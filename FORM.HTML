@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 800px;
+            border: 2px solid black;
+            margin: 180px auto;
+            background-image: linear-gradient(#ff9933, #ffffff, #138808);
+        }
+
+        h1 {
+            text-align: center;
+            color: #000080;
+            font-weight: bold;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        .row {
+            margin-top: 23px;
+        }
+
+        .row input {
+            margin-top: 10px;
+            padding: 9px 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .row label {
+            color: #000080;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .row input[type="submit"] {
+            font-size: 20px;
+            background-image: linear-gradient(#ff9933, #ffffff, #138808);
+            color: #000080;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Registation Form</h1>
+        <form name="contactForm" onsubmit="return validation()" action="#" method="get">
+            <div class="row">
+                <label for="">Enter Your first Name</label> <br>
+                <input type="text" name="name" id=""><br>
+                <div class="error" id="nameerror"></div>
+            </div>
+            <div class="row">
+                <label for="">Enter Your second Name</label> <br>
+                <input type="text" name="secondName" id="">
+                <div class="error" id="secondNameerror"></div>
+            </div>
+            <div class="row">
+                <label for="">Enter your Email</label><br>
+                <input type="email" name="email" id="">
+                <div class="error" id="emailerror"></div>
+            </div>
+            <div class="row">
+                <label for="">Enter your Mobile</label><br>
+                <input type="tel" name="phone" id="" maxlength="10">
+                <div class="error" id="phoneerror"></div>
+            </div>
+            <div class="row">
+                <label for="">Enter Your College Name</label><br>
+                <input type="text" name="collegename" id="">
+                <div class="error" id="collegeerror"></div>
+            </div>
+            <div class="row">
+                <input type="submit" value="SUBMIT">
+            </div>
+        </form>
+    </div>
+    <script>
+        function printerror(elemId, hintMsg) {
+            document.getElementById(elemId).innerHTML = hintMsg;
+        }
+        function validation() {
+            var name = document.contactForm.name.value;
+            var secondName = document.contactForm.secondName.value;
+            var email = document.contactForm.email.value;
+            var phone = document.contactForm.phone.value;
+
+       
+        //default values
+        var nameerror = (name = secondName = email = phone = collegename = true);
+
+        //first name
+        if (name = "") {
+            printerror("nameerror", "please Enter the your first name");
+        } else {
+            var regex = /^[a-zA-Z\S]+$/;
+            if (regex.test(name) === false) {
+                printerror("nameerror", "please Enter the your valid first name");
+            } else {
+                printerror("nameerror", "");
+                nameerror = false;
+            }
+        }
+
+        //Second Name
+        if (secondName = "") {
+            printerror("secondNameerror", "please Enter the Second Name");
+        } else {
+            var regex = /^[a-zA-Z\S]+$/;
+            if (regex.test(secondName) === false) {
+                printerror("secondNameerror", "please Enter the your valid Second name");
+            } else {
+                printerror("secondNameerror", "");
+                secondNameerror = false;
+            }
+        }
+
+        //Email
+        if (email = "") {
+            printerror("emailerror", "please Enter the Email");
+        } else {
+            var regex = /^\s+@\S+.\S+$/;
+            if (regex.test(email) === false) {
+                printerror("emailerror", "please Enter the valid Email");
+            } else {
+                printerror("emailerror", "");
+                emailerror = false;
+            }
+        }
+        //phone
+        if (phone = "") {
+            printerror("phoneerror", "please Enter the Phone Number");
+        } else {
+            var regex = /^[0-9]\d{9}$/;
+            if (regex.test(email) === false) {
+                printerror("phoneerror", "please Enter the valid Number");
+            } else {
+                printerror("phoneerror", "");
+                phoneerror = false;
+            }
+        }
+        //college-name
+        if (collegename = "") {
+            printerror("collegeerror", "please Enter the College Name");
+        } else {
+            var regex = /^[a-zA-Z\s]+$/;    
+            if (regex.test(collegename) === false) {
+                printerror("collegeerror", "please Enter the valid College Name");
+            } else {
+                printerror("collegeerror", "");
+                collegeerror = false;
+            }
+        }
+        if((nameerror||secondName||emailerror||phoneerror||collegeerror) == true){
+            return false;
+        }
+        else{
+            var dataveiw= "you've entered the following details:\n"+
+                          "name: " + name + "\n" +
+                          "secondName: " + secondname + "\n";
+                          "email: " + email + "\n" +
+                          "phone: " + phone + "\n" +
+                          "collegename: " + collegename + "\n" ;   
+            //alert
+            alert(dataveiw); 
+        }
+    }
+    </script>
+</body>
+
+</html>
